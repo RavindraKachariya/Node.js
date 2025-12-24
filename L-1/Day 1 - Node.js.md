@@ -1,13 +1,4 @@
 # Node.js Day 1 – Introduction, Installation, REPL & Global Object
-
-> **Important Note:**
->
-> * Puri language **Hindi** hai
-> * **Technical words English me hi** rakhe gaye hain
-> * Explanation bilkul **non‑technical person** ko dhyan me rakh kar
-> * Real‑life + real‑world examples use kiye gaye hain
-> * Last me **Interview Questions + Answers** aur **Practice Tasks** bhi diye gaye hain
-
 ---
 
 ## 1. Introduction to Node.js
