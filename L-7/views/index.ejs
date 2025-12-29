@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Taking App</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-zinc-900 min-h-screen px-4 py-12 text-zinc-100">
+
+    <!-- App Wrapper -->
+    <div class="max-w-4xl mx-auto space-y-12">
+
+        <!-- Create Note -->
+        <div class="max-w-md mx-auto">
+            <h1 class="text-xl font-medium text-center mb-6">
+                Create Note
+            </h1>
+
+            <form class="space-y-4" action="/create" method="post">
+
+                <input type="text" name="title" placeholder="Title" class="w-full bg-zinc-800 text-sm px-4 py-2.5 rounded-md 
+                           placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-600" />
+
+                <textarea rows="4" name="details" placeholder="Write something..."
+                    class="w-full bg-zinc-800 text-sm px-4 py-2.5 rounded-md 
+                           placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-600 resize-none"></textarea>
+
+                <button type="submit" class="w-full bg-zinc-700 hover:bg-zinc-600 transition 
+                           text-sm py-2.5 rounded-md">
+                    Create
+                </button>
+
+            </form>
+        </div>
+
+        <!-- All Notes -->
+        <div class="space-y-6">
+
+            <h2 class="text-lg font-medium text-center">
+                All Notes
+            </h2>
+
+            <!-- Notes Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+                <% if(files.length> 0) { %>
+                    <% files.forEach(function(val){ %>
+
+                        <div class="bg-zinc-800 p-4 rounded-md">
+                            <h3 class="text-sm font-medium mb-1 truncate">
+                                <%= val %>
+                            </h3>
+
+                            <p class="text-xs text-zinc-400 mb-3 leading-relaxed">
+                                Practice hooks, components, props, and state management.
+                            </p>
+
+                            <a href="#" class="text-xs text-zinc-400 hover:text-zinc-200">
+                                Read more
+                            </a>
+                        </div>
+
+                    <% }) %>
+                <% } else { %>
+
+                    <p class="text-center text-sm text-zinc-500 col-span-full">
+                        No notes yet
+                    </p>
+
+                <% } %>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
