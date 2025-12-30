@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Taking App</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-zinc-900 min-h-screen px-4 py-12 text-zinc-100">
+
+    <!-- App Wrapper -->
+    <div class="max-w-4xl mx-auto space-y-12">
+        <!-- Note Details -->
+        <div class="max-w-2xl mx-auto">
+            <h1 class="text-xl font-medium text-center mb-6">
+                Edit Note Details
+            </h1>
+
+            <div class="p-6 rounded-md space-y-4">
+
+                <form class="space-y-4" action="/edit" method="post">
+
+                    <!-- old filename -->
+                    <input type="hidden" name="oldTitle" value="<%= filename %>">
+
+                    <input type="text" name="newTitle" value="<%= filename.replace('.txt','') %>"
+                        class="w-full bg-zinc-800 text-sm px-4 py-2.5 rounded-md" />
+
+                    <textarea rows="4" name="newDetails"
+                        class="w-full bg-zinc-800 text-sm px-4 py-2.5 rounded-md resize-none"><%= filedata %></textarea>
+
+                    <button type="submit"
+                        class="w-full bg-zinc-700 hover:bg-zinc-600 transition text-sm py-2.5 rounded-md">
+                        Edit Note
+                    </button>
+
+                </form>
+
+                <a href="/" class="text-xs text-zinc-400 hover:text-zinc-200">Go Back to Home</a>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

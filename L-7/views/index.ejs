@@ -54,13 +54,23 @@
                                 <%= val %>
                             </h3>
 
-                            <p class="text-xs text-zinc-400 mb-3 leading-relaxed">
-                                Practice hooks, components, props, and state management.
-                            </p>
+                            <div class="flex items-center justify-between space-x-4 mt-3">
+                                <a href="/file/<%= val %>" class="text-xs text-zinc-400 hover:text-zinc-200">
+                                    Read
+                                </a>
 
-                            <a href="#" class="text-xs text-zinc-400 hover:text-zinc-200">
-                                Read more
-                            </a>
+                                <a href="/edit/<%= val %>" class="text-xs text-zinc-400 hover:text-zinc-200">
+                                    Edit
+                                </a>
+
+                                <form action="/delete/<%= val %>" method="post">
+                                    <button type="submit" class="text-xs text-red-400 hover:text-red-300"
+                                        onclick="return confirm('Delete this note?')">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+
                         </div>
 
                     <% }) %>
