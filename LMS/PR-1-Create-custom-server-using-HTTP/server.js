@@ -2,18 +2,7 @@ const http = require('http');
 const fs = require('fs');
 
 const server = http.createServer((req, res) => {
-
-    // favicon request ignore
-    if (req.url === '/favicon.ico') {
-        res.end();
-        return;
-    }
-
-    // user log message
-    const msg = `New User | Time: ${new Date().toLocaleString()} | IP: ${req.socket.remoteAddress}\n`;
-
-    fs.appendFile('userLog.text', msg, () => { });
-
+    
     console.log("Request URL: ", req.url);
 
     let fileName = "";
