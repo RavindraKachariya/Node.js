@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-slate-100 to-slate-200 min-h-screen p-10">
+
+    <div class="max-w-6xl mx-auto">
+
+        <h1 class="text-4xl font-bold text-center mb-12 text-gray-800">All Users</h1>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+            <% if(users.length > 0) { %>
+
+            <% users.forEach(function(e){ %>
+                <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition duration-300">
+                    
+                    <h3 class="text-xl font-bold text-center mt-5 text-gray-800"><%= e.Name %></h3>
+                    <h5 class="text-gray-500 text-center text-sm break-all"><%= e.Email %></h5>
+
+                    <div class="flex justify-between mt-6">
+
+                        <a href="/edit/<%= e._id %>" 
+                           class="flex-1 mr-2 text-center bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 transition font-medium">
+                           ✏️ Edit
+                        </a>
+
+                        <a href="/delete/<%= e._id %>" 
+                           class="flex-1 ml-2 text-center bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition font-medium">
+                           🗑 Delete
+                        </a>
+
+                    </div>
+
+                </div>
+            <% }); %>
+
+            <% } else { %>
+                <p class="text-center col-span-full text-gray-600">No users found.</p>
+            <% } %>
+
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="/" class="inline-block bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-black transition">
+                ⬅ Back To Home
+            </a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
