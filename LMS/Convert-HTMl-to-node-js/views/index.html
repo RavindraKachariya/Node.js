@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Node.js Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-600">NodeProject</h1>
+            <div class="space-x-6">
+                <a href="#" class="hover:text-blue-600">Home</a>
+                <a href="#features" class="hover:text-blue-600">Features</a>
+                <a href="#contact" class="hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="pt-32 pb-24 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+
+            <div class="fade-in">
+                <h2 class="text-5xl font-bold mb-6">
+                    Convert Static HTML <br>
+                    into Powerful Node.js Apps
+                </h2>
+                <p class="text-lg mb-8">
+                    Modern UI, backend routing, scalability & performance.
+                </p>
+                <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold glow transition">
+                    Get Started
+                </button>
+            </div>
+
+            <div class="slide-left float">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c" class="rounded-xl shadow-2xl"
+                    alt="code" />
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="py-24">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h3 class="text-4xl font-bold mb-14 fade-in">Why Choose This Project?</h3>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="bg-white p-8 rounded-xl shadow hover:scale-105 transition fade-in">
+                    <h4 class="text-xl font-semibold mb-4">⚡ Fast Backend</h4>
+                    <p>Built on Node.js for high performance.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow hover:scale-105 transition fade-in">
+                    <h4 class="text-xl font-semibold mb-4">🎨 Modern UI</h4>
+                    <p>Tailwind CSS based responsive design.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow hover:scale-105 transition fade-in">
+                    <h4 class="text-xl font-semibold mb-4">🚀 Scalable</h4>
+                    <p>Ready for APIs, database, and authentication.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="bg-blue-600 text-white py-20">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 text-center gap-10">
+            <div class="fade-in">
+                <h4 class="text-4xl font-bold">100%</h4>
+                <p>Responsive</p>
+            </div>
+            <div class="fade-in">
+                <h4 class="text-4xl font-bold">Fast</h4>
+                <p>Node.js Backend</p>
+            </div>
+            <div class="fade-in">
+                <h4 class="text-4xl font-bold">Scalable</h4>
+                <p>Future Ready</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-24">
+        <div class="max-w-xl mx-auto px-6">
+            <h3 class="text-4xl font-bold text-center mb-10 fade-in">Contact Us</h3>
+
+            <form class="bg-white p-8 rounded-xl shadow fade-in space-y-4">
+                <input type="text" placeholder="Name" class="w-full border px-4 py-2 rounded" />
+                <input type="email" placeholder="Email" class="w-full border px-4 py-2 rounded" />
+                <textarea placeholder="Message" class="w-full border px-4 py-2 rounded"></textarea>
+                <button class="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 glow transition">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center">
+        © 2026 Node.js Project • Designed with Tailwind CSS
+    </footer>
+
+</body>
+
+</html>
