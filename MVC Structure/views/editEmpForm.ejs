@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee | EmpManagePro</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --success-color: #4cc9f0;
+            --warning-color: #f8961e;
+            --danger-color: #f72585;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+        }
+        
+        .form-card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .form-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .form-header {
+            background: linear-gradient(135deg, var(--warning-color) 0%, #e68a00 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .form-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .form-header h1 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-header p {
+            opacity: 0.9;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .employee-id-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-header-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-body {
+            padding: 2.5rem;
+        }
+        
+        .form-section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            font-weight: 600;
+            color: var(--warning-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #f0f2f5;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .form-label {
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control, .form-select {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--warning-color);
+            box-shadow: 0 0 0 0.25rem rgba(248, 150, 30, 0.15);
+        }
+        
+        .form-control-lg {
+            padding: 1rem 1.25rem;
+            font-size: 1rem;
+        }
+        
+        .input-group-text {
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-right: none;
+            color: #6c757d;
+        }
+        
+        /* Radio and Checkbox Styles */
+        .form-options-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 0.5rem;
+        }
+        
+        .form-check-card {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .form-check-card:hover {
+            border-color: #cbd3da;
+            background-color: #f8f9fa;
+        }
+        
+        .form-check-input {
+            display: none;
+        }
+        
+        .form-check-input:checked + .form-check-card {
+            border-color: var(--warning-color);
+            background-color: rgba(248, 150, 30, 0.08);
+            color: var(--warning-color);
+            font-weight: 500;
+        }
+        
+        .form-check-input[type="radio"]:checked + .form-check-card {
+            border-color: var(--warning-color);
+            background-color: rgba(248, 150, 30, 0.12);
+            color: var(--warning-color);
+        }
+        
+        .form-check-input[type="checkbox"]:checked + .form-check-card {
+            border-color: var(--success-color);
+            background-color: rgba(76, 201, 240, 0.08);
+            color: var(--success-color);
+        }
+        
+        .form-check-card i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        /* Button Styles */
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f0f2f5;
+        }
+        
+        .btn-update {
+            background: linear-gradient(135deg, var(--warning-color) 0%, #e68a00 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 0.9rem 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(248, 150, 30, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-update:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(248, 150, 30, 0.35);
+            color: white;
+        }
+        
+        .btn-cancel {
+            background-color: #f8f9fa;
+            color: #6c757d;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 0.9rem 2rem;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-cancel:hover {
+            background-color: #e9ecef;
+            color: #495057;
+            border-color: #dee2e6;
+        }
+        
+        .btn-delete {
+            background-color: rgba(247, 37, 133, 0.1);
+            color: var(--danger-color);
+            border: 2px solid rgba(247, 37, 133, 0.2);
+            border-radius: 10px;
+            padding: 0.9rem 2rem;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-delete:hover {
+            background-color: var(--danger-color);
+            color: white;
+            border-color: var(--danger-color);
+        }
+        
+        /* Form Validation Styles */
+        .form-control.is-invalid {
+            border-color: var(--danger-color);
+        }
+        
+        .form-control.is-invalid:focus {
+            box-shadow: 0 0 0 0.25rem rgba(247, 37, 133, 0.15);
+        }
+        
+        .invalid-feedback {
+            color: var(--danger-color);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 15px;
+            }
+            
+            .form-body {
+                padding: 1.5rem;
+            }
+            
+            .form-header {
+                padding: 1.5rem;
+            }
+            
+            .form-options-container {
+                gap: 10px;
+            }
+            
+            .form-check-card {
+                min-width: calc(50% - 10px);
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-update, .btn-cancel, .btn-delete {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .form-check-card {
+                min-width: 100%;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-card {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* Current Value Indicator */
+        .current-value {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--warning-color);
+            padding: 0.75rem 1rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .current-value i {
+            color: var(--warning-color);
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-card">
+            <!-- Form Header -->
+            <div class="form-header">
+                <div class="form-header-icon">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <h1>Edit Employee</h1>
+                <p>Update the details for <%= empData.name %></p>
+                <div class="employee-id-badge">
+                    <i class="fas fa-id-badge me-1"></i> Employee ID: <%= empData.id %>
+                </div>
+            </div>
+            
+            <!-- Form Body -->
+            <form method="post" action="/employee/updateEmp" class="form-body" id="editEmployeeForm">
+                <!-- Hidden ID Field -->
+                <input type="hidden" name="id" value="<%= empData.id %>">
+                
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-user-circle"></i> Personal Information
+                    </h3>
+                    
+                    <div class="current-value mb-3">
+                        <i class="fas fa-info-circle"></i>
+                        Currently editing: <strong><%= empData.name %></strong>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="name" class="form-label">Full Name *</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input type="text" class="form-control form-control-lg" id="name" name="name" value="<%= empData.name %>" placeholder="Enter employee full name" required>
+                            </div>
+                            <div class="invalid-feedback" id="nameError">Please enter a valid name</div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input type="email" class="form-control form-control-lg" id="email" name="email" value="<%= empData.email %>" placeholder="employee@company.com" required>
+                            </div>
+                            <div class="invalid-feedback" id="emailError">Please enter a valid email address</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="phone" class="form-label">Phone Number *</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                <input type="tel" class="form-control form-control-lg" id="phone" name="phone" value="<%= empData.phone %>" placeholder="Enter 10-digit phone number" required>
+                            </div>
+                            <div class="invalid-feedback" id="phoneError">Please enter a valid 10-digit phone number</div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="salary" class="form-label">Salary *</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                <input type="number" class="form-control form-control-lg" id="salary" name="salary" value="<%= empData.salary %>" placeholder="0.00" step="0.01" min="0" required>
+                            </div>
+                            <div class="invalid-feedback" id="salaryError">Please enter a valid salary amount</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gender Section -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-venus-mars"></i> Gender
+                    </h3>
+                    
+                    <div class="current-value mb-3">
+                        <i class="fas fa-venus-mars"></i>
+                        Current: <strong><%= empData.gender %></strong>
+                    </div>
+                    
+                    <div class="form-options-container">
+                        <input type="radio" value="Male" name="gender" id="genderMale" class="form-check-input" <%= empData.gender == "Male" ? "checked" : "" %> required>
+                        <label for="genderMale" class="form-check-card">
+                            <i class="fas fa-male"></i>
+                            Male
+                        </label>
+                        
+                        <input type="radio" value="Female" name="gender" id="genderFemale" class="form-check-input" <%= empData.gender == "Female" ? "checked" : "" %> required>
+                        <label for="genderFemale" class="form-check-card">
+                            <i class="fas fa-female"></i>
+                            Female
+                        </label>
+                        
+                        <input type="radio" value="Other" name="gender" id="genderOther" class="form-check-input" <%= empData.gender == "Other" ? "checked" : "" %> required>
+                        <label for="genderOther" class="form-check-card">
+                            <i class="fas fa-user"></i>
+                            Other
+                        </label>
+                    </div>
+                    <div class="invalid-feedback d-block mt-2" id="genderError">Please select a gender</div>
+                </div>
+                
+                <!-- Hobbies Section -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-heart"></i> Hobbies & Interests
+                    </h3>
+                    
+                    <% 
+                        // Parse hobbies from the database
+                        let currentHobbies = [];
+                        if (empData.hobby) {
+                            if (Array.isArray(empData.hobby)) {
+                                currentHobbies = empData.hobby;
+                            } else if (typeof empData.hobby === 'string') {
+                                currentHobbies = empData.hobby.split(',').map(h => h.trim());
+                            }
+                        }
+                    %>
+                    
+                    <div class="current-value mb-3">
+                        <i class="fas fa-heart"></i>
+                        Current: <strong><%= currentHobbies.join(', ') || 'None selected' %></strong>
+                    </div>
+                    
+                    <p class="text-muted mb-3">Select all that apply</p>
+                    
+                    <div class="form-options-container">
+                        <% ["Cricket", "Games", "Uno", "Singing", "Dance", "Others"].map(hobby => { 
+                            const isChecked = currentHobbies.includes(hobby);
+                        %>
+                            <input type="checkbox" value="<%= hobby %>" name="hobby" id="hobby<%= hobby.replace(/\s/g, '') %>" class="form-check-input" <%= isChecked ? "checked" : "" %>>
+                            <label for="hobby<%= hobby.replace(/\s/g, '') %>" class="form-check-card">
+                                <% 
+                                    let iconClass = "fas fa-star";
+                                    switch(hobby) {
+                                        case "Cricket": iconClass = "fas fa-baseball-ball"; break;
+                                        case "Games": iconClass = "fas fa-gamepad"; break;
+                                        case "Uno": iconClass = "fas fa-dice"; break;
+                                        case "Singing": iconClass = "fas fa-microphone"; break;
+                                        case "Dance": iconClass = "fas fa-music"; break;
+                                        case "Others": iconClass = "fas fa-ellipsis-h"; break;
+                                    }
+                                %>
+                                <i class="<%= iconClass %>"></i>
+                                <%= hobby %>
+                                <% if (isChecked) { %>
+                                    <span class="badge bg-success mt-1" style="font-size: 0.6rem;">SELECTED</span>
+                                <% } %>
+                            </label>
+                        <% }) %>
+                    </div>
+                </div>
+                
+                <!-- Role Section -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-briefcase"></i> Employee Designation
+                    </h3>
+                    
+                    <div class="current-value mb-3">
+                        <i class="fas fa-user-tie"></i>
+                        Current: <strong><%= empData.role %></strong>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="role" class="form-label">Select Role *</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                                <select class="form-select form-control-lg" id="role" name="role" required>
+                                    <option value="" disabled>Select a role</option>
+                                    <% ["Owner", "Manager", "HR", "Employee", "Peon"].map(role => { %>
+                                        <option value="<%= role %>" <%= empData.role == role ? "selected" : "" %>><%= role %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            <div class="invalid-feedback" id="roleError">Please select a role</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <div class="d-flex gap-2">
+                        <a href="javascript:history.back()" class="btn-cancel">
+                            <i class="fas fa-arrow-left"></i> Cancel
+                        </a>
+                        <a href="/employee/deleteBtn/?empId=<%= empData.id %>" class="btn-delete" id="deleteBtn" onclick="return confirmDelete()">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                    </div>
+                    
+                    <button type="submit" class="btn-update">
+                        <i class="fas fa-save"></i> Update Employee
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    
+    <script>
+        // Form Validation
+        document.getElementById('editEmployeeForm').addEventListener('submit', function(event) {
+            let isValid = true;
+            
+            // Name validation
+            const nameInput = document.getElementById('name');
+            if (!nameInput.value.trim()) {
+                nameInput.classList.add('is-invalid');
+                document.getElementById('nameError').textContent = 'Name is required';
+                isValid = false;
+            } else {
+                nameInput.classList.remove('is-invalid');
+            }
+            
+            // Email validation
+            const emailInput = document.getElementById('email');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(emailInput.value)) {
+                emailInput.classList.add('is-invalid');
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                isValid = false;
+            } else {
+                emailInput.classList.remove('is-invalid');
+            }
+            
+            // Phone validation
+            const phoneInput = document.getElementById('phone');
+            const phonePattern = /^\d{10}$/;
+            if (!phonePattern.test(phoneInput.value)) {
+                phoneInput.classList.add('is-invalid');
+                document.getElementById('phoneError').textContent = 'Please enter a valid 10-digit phone number';
+                isValid = false;
+            } else {
+                phoneInput.classList.remove('is-invalid');
+            }
+            
+            // Salary validation
+            const salaryInput = document.getElementById('salary');
+            if (!salaryInput.value || parseFloat(salaryInput.value) <= 0) {
+                salaryInput.classList.add('is-invalid');
+                document.getElementById('salaryError').textContent = 'Please enter a valid salary amount';
+                isValid = false;
+            } else {
+                salaryInput.classList.remove('is-invalid');
+            }
+            
+            // Gender validation
+            const genderSelected = document.querySelector('input[name="gender"]:checked');
+            if (!genderSelected) {
+                document.getElementById('genderError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('genderError').style.display = 'none';
+            }
+            
+            // Role validation
+            const roleInput = document.getElementById('role');
+            if (!roleInput.value) {
+                roleInput.classList.add('is-invalid');
+                document.getElementById('roleError').textContent = 'Please select a role';
+                isValid = false;
+            } else {
+                roleInput.classList.remove('is-invalid');
+            }
+            
+            if (!isValid) {
+                event.preventDefault();
+                event.stopPropagation();
+                
+                // Scroll to first error
+                const firstError = document.querySelector('.is-invalid');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
+        
+        // Real-time validation for inputs
+        document.querySelectorAll('#editEmployeeForm input, #editEmployeeForm select').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.classList.contains('is-invalid')) {
+                    this.classList.remove('is-invalid');
+                }
+                
+                // Specific real-time validation for phone
+                if (this.id === 'phone') {
+                    this.value = this.value.replace(/\D/g, '').slice(0, 10);
+                }
+                
+                // Specific real-time validation for salary
+                if (this.id === 'salary' && this.value) {
+                    if (parseFloat(this.value) < 0) {
+                        this.value = '';
+                    }
+                }
+            });
+        });
+        
+        // Auto-hide gender error when a gender is selected
+        document.querySelectorAll('input[name="gender"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.getElementById('genderError').style.display = 'none';
+            });
+        });
+        
+        // Add animation to form cards on hover
+        document.querySelectorAll('.form-check-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Confirm delete action
+        function confirmDelete() {
+            const employeeName = "<%= empData.name %>";
+            return confirm(`Are you sure you want to delete ${employeeName}? This action cannot be undone.`);
+        }
+        
+        // Highlight changed fields
+        document.addEventListener('DOMContentLoaded', function() {
+            const originalValues = {
+                name: "<%= empData.name %>",
+                email: "<%= empData.email %>",
+                phone: "<%= empData.phone %>",
+                salary: "<%= empData.salary %>",
+                gender: "<%= empData.gender %>",
+                role: "<%= empData.role %>"
+            };
+            
+            const inputs = document.querySelectorAll('#editEmployeeForm input, #editEmployeeForm select');
+            inputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    const fieldName = this.name;
+                    const currentValue = this.type === 'checkbox' ? this.checked : this.value;
+                    
+                    if (fieldName === 'hobby') {
+                        // Handle checkboxes separately
+                        return;
+                    }
+                    
+                    if (fieldName in originalValues) {
+                        const originalValue = originalValues[fieldName];
+                        
+                        if (currentValue !== originalValue) {
+                            this.style.borderColor = 'var(--warning-color)';
+                            this.style.backgroundColor = 'rgba(248, 150, 30, 0.05)';
+                        } else {
+                            this.style.borderColor = '';
+                            this.style.backgroundColor = '';
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Initialize tooltips
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteBtn = document.getElementById('deleteBtn');
+            deleteBtn.title = "Delete this employee permanently";
+            
+            // Show current values on hover for checkboxes
+            document.querySelectorAll('.form-check-card').forEach(card => {
+                const checkbox = card.previousElementSibling;
+                if (checkbox.checked) {
+                    card.style.boxShadow = '0 0 0 2px var(--success-color)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
