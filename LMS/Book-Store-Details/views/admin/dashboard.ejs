@@ -1,0 +1,41 @@
+<%- include("../layouts/header") %>
+
+    <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
+
+    <a href="/admin/add" class="bg-green-500 text-white px-4 py-2 rounded mb-4 inline-block hover:bg-green-600">
+        + Add New Book
+    </a>
+
+    <table class="w-full bg-white shadow rounded-lg overflow-hidden">
+        <thead class="bg-gray-200">
+            <tr>
+                <th class="p-3 text-left">Title</th>
+                <th class="p-3 text-left">Price</th>
+                <th class="p-3 text-left">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% books.forEach(book=> { %>
+                <tr class="border-t">
+                    <td class="p-3">
+                        <%= book.title %>
+                    </td>
+                    <td class="p-3">₹ <%= book.price %>
+                    </td>
+                    <td class="p-3">
+                        <a href="/admin/edit/<%= book._id %>" class="bg-blue-500 text-white px-3 py-1 rounded">
+                            Edit
+                        </a>
+
+                        <form action="/admin/delete/<%= book._id %>?_method=DELETE" method="POST" class="inline">
+                            <button class="bg-red-500 text-white px-3 py-1 rounded">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+
+    <%- include("../layouts/footer") %>

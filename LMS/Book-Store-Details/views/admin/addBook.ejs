@@ -1,0 +1,26 @@
+<%- include("../layouts/header") %>
+
+    <h1 class="text-3xl font-bold mb-6">Add New Book</h1>
+
+    <form action="/admin/add" method="POST" class="bg-white p-6 rounded shadow-lg">
+
+        <input type="text" name="title" placeholder="Title" class="w-full border p-2 mb-4 rounded" required>
+
+        <input type="text" name="author" placeholder="Author" class="w-full border p-2 mb-4 rounded" required>
+
+        <input type="number" name="price" placeholder="Price" class="w-full border p-2 mb-4 rounded" required>
+
+        <input type="text" name="category" placeholder="Category" class="w-full border p-2 mb-4 rounded" required>
+
+        <input type="text" name="image" placeholder="Image URL" class="w-full border p-2 mb-4 rounded" required>
+
+        <textarea name="description" placeholder="Description" class="w-full border p-2 mb-4 rounded"
+            required></textarea>
+
+        <button class="bg-green-500 text-white px-4 py-2 rounded">
+            Save Book
+        </button>
+
+    </form>
+
+    <%- include("../layouts/footer") %>

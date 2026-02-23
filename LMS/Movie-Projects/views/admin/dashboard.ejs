@@ -1,0 +1,32 @@
+<%- include("../layouts/header") %>
+
+    <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
+
+    <a href="/admin/add" class="bg-green-500 text-white px-4 py-2 rounded">
+        + Add Movie
+    </a>
+
+    <table class="w-full mt-6 bg-white shadow rounded">
+        <tr class="bg-gray-200">
+            <th class="p-2">Title</th>
+            <th>Year</th>
+            <th>Actions</th>
+        </tr>
+
+        <% movies.forEach(movie=> { %>
+            <tr class="text-center border-t">
+                <td class="p-2">
+                    <%= movie.title %>
+                </td>
+                <td>
+                    <%= movie.releaseYear %>
+                </td>
+                <td>
+                    <a href="/admin/edit/<%= movie._id %>" class="text-blue-500">Edit</a> |
+                    <a href="/admin/delete/<%= movie._id %>" class="text-red-500">Delete</a>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+
+    <%- include("../layouts/footer") %>
