@@ -1,0 +1,79 @@
+<% include ./navbar %>
+
+<div class="container">
+  <h1>All Articles</h1>
+  <a href="/articles/create" class="btn">New Article</a>
+  <% if (articles.length === 0) { %>
+    <p>No articles found.</p>
+  <% } else { %>
+    <div class="article-list">
+      <% articles.forEach(article => { %>
+        <div class="article-card">
+          <h2><a href="/articles/<%= article._id %>"><%= article.title %></a></h2>
+          <p class="author">By <%= article.author.username %> on <%= article.createdAt.toLocaleDateString() %></p>
+          <p class="preview"><%= article.content.substring(0, 200) %>...</p>
+          <% if (article.comments.length > 0) { %>
+            <span class="comment-count"><%= article.comments.length %> comments</span>
+          <% } %>
+        </div>
+      <% }); %>
+    </div>
+  <% } %>
+</div>
+
+<style>
+  /* Basic styling for article list */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  .article-list {
+    display: grid;
+    gap: 20px;
+  }
+  .article-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .article-card h2 {
+    margin-top: 0;
+  }
+  .article-card h2 a {
+    color: #333;
+    text-decoration: none;
+  }
+  .article-card h2 a:hover {
+    text-decoration: underline;
+  }
+  .author {
+    color: #666;
+    font-size: 0.9em;
+  }
+  .preview {
+    color: #555;
+    line-height: 1.5;
+  }
+  .comment-count {
+    display: inline-block;
+    background-color: #6c757d;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8em;
+  }
+</style>

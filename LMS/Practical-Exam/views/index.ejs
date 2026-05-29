@@ -1,0 +1,21 @@
+<% include ./navbar %>
+
+<div class="container">
+  <h1>Welcome to the BlogApp</h1>
+  <p>This is a simple blog application with JWT authentication, role-based access, and multiuser support.</p>
+  <% if (user) { %>
+    <p>Hello, <%= user.username %>! You are logged in as a <%= user.role %>.</p>
+  <% } else { %>
+    <p>Please <a href="/login">log in</a> or <a href="/register">register</a> to start blogging.</p>
+  <% } %>
+</div>
+
+<style>
+  /* Basic styling for index */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+</style>

@@ -1,0 +1,16 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <h1 class="logo">BlogApp</h1>
+    <ul class="nav-menu">
+      <% if (user) { %>
+        <li><a href="/articles">Home</a></li>
+        <li><a href="/myarticles">My Articles</a></li>
+        <li><a href="/articles/create">New Article</a></li>
+        <li><a href="/logout">Logout</a></li>
+      <% } else { %>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      <% } %>
+    </ul>
+  </div>
+</nav>
